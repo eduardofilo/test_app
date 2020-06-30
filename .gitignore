@@ -1,0 +1,7 @@
+/static/
+/media/
+*.pyc
+.idea/
+testapp/__pycache__
+dictionary/__pycache__/
+dictionary/migrations/__pycache__/
