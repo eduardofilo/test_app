@@ -6,8 +6,13 @@ from django.utils.translation import ugettext as _
 class Word(models.Model):
     term = models.CharField(_('palabra'), max_length=100, blank=False, null=False)
 
+    def __str__(self):
+        return self.term
 
 # Acceptation model
 class Acceptation(models.Model):
     meaning = models.TextField(_('acepción'), max_length=4096, blank=False)
     word = models.ForeignKey('Word', on_delete=models.CASCADE, blank=False, null=False)
+
+    def __str__(self):
+        return self.word.term + " / " + self.meaning
