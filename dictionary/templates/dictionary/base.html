@@ -34,12 +34,7 @@
             </div>
         </nav>
 
-        {% block content %}
-        {% endblock content %}
-
-        {% cookielaw_banner %}
         <!-- Bootstrap core JavaScript -->
-        <!-- Placed at the end of the document so the pages load faster -->
         {% if debug %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
         <script src="{% static 'dictionary/bootstrap-4.5.0/js/bootstrap.js' %}"></script>
@@ -48,6 +43,11 @@
         <script src="{% static 'dictionary/bootstrap-4.5.0/js/bootstrap.min.js' %}"></script>
         {% endif %}
         <script src="{% static 'cookielaw/js/cookielaw.js' %}" type="text/javascript"></script>
+
+        {% block content %}{% endblock content %}
+
+        {% cookielaw_banner %}
+
         {% block script-inline %}{% endblock script-inline %}
     </body>
 </html>
