@@ -12,7 +12,7 @@ class Word(models.Model):
 # Acceptation model
 class Acceptation(models.Model):
     meaning = models.TextField(_('acepción'), max_length=4096, blank=False)
-    word = models.ForeignKey('Word', on_delete=models.CASCADE, blank=False, null=False)
+    word = models.ForeignKey('Word', related_name="has_acceptations", on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
         return self.word.term + " / " + self.meaning

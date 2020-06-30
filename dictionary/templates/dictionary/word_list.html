@@ -19,7 +19,7 @@
                 <tbody>
                 {% for word in object_list %}
                     <tr>
-                        <td><a href="{% url 'dictionary:word_edit' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
+                        <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
                         <td><a href="{% url 'dictionary:word_delete' word.id %}" data-toggle="tooltip" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a></td>
                     </tr>
                 {% empty %}
@@ -33,4 +33,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

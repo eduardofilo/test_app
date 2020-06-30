@@ -2,6 +2,7 @@ asgiref==3.2.10
 Django==3.0.7
 django-classy-tags==1.0.0
 django-cookie-law==2.0.3
+django-crispy-forms==1.9.1
 psycopg2==2.8.5
 pytest-runner==5.2
 pytz==2020.1
