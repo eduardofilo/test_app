@@ -20,6 +20,12 @@
         {% block style-head %}{% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'dictionary:word_list' %}">
+                <img src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/house-door-fill.svg' %}" width="30" height="30" alt="" loading="lazy">
+            </a>
+        </nav>
+
         <div class="jumbotron">
             <h1 class="display-4">Diccionario</h1>
             <p class="lead">Acepciones varias de palabras.</p>
