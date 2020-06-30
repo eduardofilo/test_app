@@ -11,6 +11,14 @@ class AcceptationForm(forms.ModelForm):
     class Meta:
         model = Acceptation
         exclude = ()
+        widgets = {
+            'meaning': forms.Textarea(attrs={'rows': 2, 'cols': 70}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(AcceptationForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
 
 
 AcceptationFormSet = inlineformset_factory(
@@ -27,13 +35,14 @@ class WordForm(forms.ModelForm):
         super(WordForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
+        self.helper.form_show_labels = False
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-3 create-label'
         self.helper.field_class = 'col-md-9'
         self.helper.layout = Layout(
             Div(
                 Field('term'),
-                Fieldset('Añadir acepciones',
+                Fieldset('Acepciones',
                     Formset('acceptations')),
                 HTML("<br>"),
                 ButtonHolder(Submit('submit', 'Guardar')),
