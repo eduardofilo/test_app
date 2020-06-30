@@ -8,29 +8,76 @@
         </div>
     </div>
     <div class="row">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Palabra</th>
+                    <th>N. Acepciones</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for word in object_list %}
+                <tr>
+                    <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
+                    <td>{{ word.has_acceptations.count }}</td>
+                    <td><a href="{% url 'dictionary:word_delete' word.id %}" data-toggle="tooltip" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="text-danger" colspan="3">No hay palabras en el diccionario.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
         <div class="col-xs-12">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Palabra</th>
-                        <th>N. Acepciones</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for word in object_list %}
-                    <tr>
-                        <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
-                        <td>{{ word.has_acceptations.count }}</td>
-                        <td><a href="{% url 'dictionary:word_delete' word.id %}" data-toggle="tooltip" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a></td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td class="text-danger" colspan="3">No hay palabras en el diccionario.</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            <nav aria-label="Navegación">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for pagina in page_obj.paginator.page_range %}
+                    {% if pagina <= page_obj.number|add:10 and pagina >= page_obj.number|add:-10 %}
+                        {% ifequal pagina page_obj.number %}
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">{{ pagina }} <span class="sr-only">(current)</span></span>
+                    </li>
+                        {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ pagina }}">{{ pagina }}</a></li>
+                        {% endifequal %}
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
             <a class="btn btn-primary" href="{% url 'dictionary:word_create' %}" role="button">Nueva palabra</a>
         </div>
     </div>

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -9,6 +10,7 @@ from dictionary.models import Word
 
 class WordListView(generic.ListView):
     model = Word
+    paginate_by = settings.PAG_WORD
 
 
 class WordCreateView(generic.CreateView):
