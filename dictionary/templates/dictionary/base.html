@@ -1,0 +1,39 @@
+{% load static %}
+{% load cookielaw_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Diccionario</title>
+        <!-- Bootstrap CSS -->
+        {% if debug %}
+        <link rel="stylesheet" href="{%  static 'dictionary/bootstrap-4.5.0/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{%  static 'dictionary/bootstrap-4.5.0/css/bootstrap-theme.css' %}">
+        {% else %}
+        <link rel="stylesheet" href="{%  static 'dictionary/bootstrap-4.5.0/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{%  static 'dictionary/bootstrap-4.5.0/css/bootstrap-theme.min.css' %}">
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{% static 'dictionary/site_style.css' %}" />
+        <link href="{% static 'cookielaw/css/cookielaw.css' %}" rel="stylesheet" />
+        {% block style-head %}{% endblock %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+
+        {% cookielaw_banner %}
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {% if debug %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+        <script src="{%  static 'dictionary/bootstrap-4.5.0/js/bootstrap.js' %}"></script>
+        {% else %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{%  static 'dictionary/bootstrap-4.5.0/js/bootstrap.min.js' %}"></script>
+        {% endif %}
+        <script src="{% static 'cookielaw/js/cookielaw.js' %}" type="text/javascript"></script>
+        {% block script-inline %}{% endblock %}
+    </body>
+</html>
