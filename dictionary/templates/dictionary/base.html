@@ -20,17 +20,20 @@
         {% block style-head %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{% url 'dictionary:word_list' %}">
                 <img src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/house-door-fill.svg' %}" width="30" height="30" alt="" loading="lazy">
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="{% url 'dictionary:word_list' %}">Diccionario <span class="sr-only">(current)</span></a>
+                </div>
+            </div>
         </nav>
-
-        <div class="jumbotron">
-            <h1 class="display-4">Diccionario</h1>
-            <p class="lead">Acepciones varias de palabras.</p>
-        </div>
-
+        
         {% block content %}
         {% endblock %}
 

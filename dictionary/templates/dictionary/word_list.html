@@ -4,7 +4,7 @@
 <div class="content container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Palabras</h1>
+            <h2>Palabras</h2>
         </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                 <tbody>
                 {% for word in object_list %}
                     <tr>
-                        <td><a href="{% url 'dictionary:word_detail' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
+                        <td><a href="{% url 'dictionary:word_edit' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
                         <td><a href="{% url 'dictionary:word_delete' word.id %}" data-toggle="tooltip" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a></td>
                     </tr>
                 {% empty %}
@@ -29,6 +29,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <a class="btn btn-primary" href="{% url 'dictionary:word_create' %}" role="button">Nueva palabra</a>
         </div>
     </div>
 </div>
