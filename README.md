@@ -22,6 +22,7 @@ The following Python modules are used:
     ```
     $ cd ~/git
     $ git clone https://github.com/eduardofilo/test_app
+    $ cd ~/git/test_app
     $ mkvirtualenv test_app -p python3
     $ workon test_app
     (test_app) $ setvirtualenvproject $VIRTUAL_ENV .
