@@ -36,10 +36,10 @@
 
         <!-- Bootstrap core JavaScript -->
         {% if debug %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+        <script src="{% static 'dictionary/jquery-3.5.1/jquery.js' %}"></script>
         <script src="{% static 'dictionary/bootstrap-4.5.0/js/bootstrap.js' %}"></script>
         {% else %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'dictionary/jquery-3.5.1/jquery.min.js' %}"></script>
         <script src="{% static 'dictionary/bootstrap-4.5.0/js/bootstrap.min.js' %}"></script>
         {% endif %}
         <script src="{% static 'cookielaw/js/cookielaw.js' %}" type="text/javascript"></script>
