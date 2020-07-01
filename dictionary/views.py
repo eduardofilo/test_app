@@ -81,6 +81,11 @@ class WordUpdateView(generic.UpdateView):
         return super(WordUpdateView, self).form_valid(form)
 
 
-class WordDeleteView(generic.DeleteView):
-    model = Word
-    success_url = reverse_lazy('dictionary:word_list')
+class WordDeleteView(generic.base.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        word = Word.objects.get(pk=self.kwargs['pk'])
+        if word:
+            word.delete()
+
+        self.url = reverse_lazy('dictionary:word_list')
+        return super(WordDeleteView, self).get_redirect_url(*args, **kwargs)

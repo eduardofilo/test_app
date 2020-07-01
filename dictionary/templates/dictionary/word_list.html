@@ -2,6 +2,26 @@
 {% load dictionary_tags %}
 {% load static %}
 {% block content %}
+<!-- Modal -->
+<div class="modal" id="confirm-delete" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Estás seguro de querer eliminar la palabra y todas sus acepciones?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <a id="btn-yes" class="btn btn-primary">Sí</a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -27,7 +47,9 @@
                 <tr>
                     <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
                     <td>{{ word.has_acceptations.count }}</td>
-                    <td><a href="{% url 'dictionary:word_delete' word.id %}" data-toggle="tooltip" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a></td>
+                    <td>
+                        <a data-href="{% url 'dictionary:word_delete' word.id %}" class="cursor_pointer" data-toggle="modal" data-target="#confirm-delete" title="Eliminar"><img class="controls" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a>
+                    </td>
                 </tr>
             {% empty %}
                 <tr>
@@ -94,3 +116,14 @@
     </div>
 </div>
 {% endblock content %}
+{% block script-inline %}
+<script language="JavaScript">
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $('#btn-yes').attr('href', $(e.relatedTarget).data('href'));
+    });
+    $('#btn-yes').click(function(e) {
+        $(this).addClass("disabled");
+        return true;
+    });
+</script>
+{% endblock %}
