@@ -33,34 +33,32 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <table class="table table-sm table-hover table-striped">
-            <caption>Mostrando {{ page_obj.start_index }}-{{ page_obj.end_index }} de {{ page_obj.paginator.count }} palabras</caption>
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Acciones</th>
-                    <th scope="col">Palabra</th>
-                    <th scope="col">N. Acepciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for word in object_list %}
-                <tr>
-                    <td>
-                        <a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar"><img class="action" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/pencil.svg' %}" alt="Edit" title="Editar"></a>
-                        <a class="btn actions" data-href="{% url 'dictionary:word_delete' word.id %}" data-toggle="modal" data-target="#confirm-delete" title="Eliminar"><img class="action" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a>
-                    </td>
-                    <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
-                    <td>{{ word.has_acceptations.count }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td class="text-danger" colspan="3">No hay palabras en el diccionario.</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <table class="table table-sm table-hover table-striped">
+        <caption>Mostrando {{ page_obj.start_index }}-{{ page_obj.end_index }} de {{ page_obj.paginator.count }} palabras</caption>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Acciones</th>
+                <th scope="col">Palabra</th>
+                <th scope="col">N. Acepciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for word in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar"><img class="action" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/pencil.svg' %}" alt="Edit" title="Editar"></a>
+                    <a class="btn actions" data-href="{% url 'dictionary:word_delete' word.id %}" data-toggle="modal" data-target="#confirm-delete" title="Eliminar"><img class="action" src="{%  static 'dictionary/bootstrap-icons-1.0.0-alpha5/x-circle-fill.svg' %}" alt="Delete" title="Eliminar"></a>
+                </td>
+                <td><a href="{% url 'dictionary:word_update' word.id %}" data-toggle="tooltip" title="Editar palabra">{{ word.term }}</a></td>
+                <td>{{ word.has_acceptations.count }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td class="text-danger" colspan="3">No hay palabras en el diccionario.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     <div class="row">
         <div class="col">
             <nav aria-label="Navegación">
