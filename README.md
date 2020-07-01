@@ -1,5 +1,7 @@
 # testapp
 
+This is a small Django application for demostrative purposes.
+
 ## Requirements
 
 System requirements:
