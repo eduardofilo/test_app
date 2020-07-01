@@ -52,7 +52,7 @@ The following Python modules are used:
     (test_app) $ python manage.py migrate
     ```
 
-4. Load mock data:
+4. Load mock data (six minutes in my machine):
 
     ```
     (test_app) $ python manage.py shell < fill_db.py
