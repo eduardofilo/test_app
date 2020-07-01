@@ -4,10 +4,10 @@ from django.forms.models import inlineformset_factory
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, Div, HTML, ButtonHolder, Submit
 from .layouts import *
+from django.utils.translation import ugettext as _
 
 
 class AcceptationForm(forms.ModelForm):
-
     class Meta:
         model = Acceptation
         exclude = ()
@@ -26,7 +26,6 @@ AcceptationFormSet = inlineformset_factory(
 
 
 class WordForm(forms.ModelForm):
-
     class Meta:
         model = Word
         exclude = []
@@ -48,3 +47,13 @@ class WordForm(forms.ModelForm):
                 ButtonHolder(Submit('submit', 'Guardar')),
                 )
             )
+
+
+class FilterForm(forms.Form):
+    filter = forms.CharField(max_length=100, required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(FilterForm, self).__init__(*args, **kwargs)
+        self.fields['filter'].widget.attrs['placeholder'] = _('Filtrar')
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'

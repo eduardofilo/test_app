@@ -9,6 +9,9 @@ class Word(models.Model):
     def __str__(self):
         return self.term
 
+    class Meta:
+        ordering = ["term"]
+
 # Acceptation model
 class Acceptation(models.Model):
     meaning = models.TextField(_('acepción'), max_length=4096, blank=False)

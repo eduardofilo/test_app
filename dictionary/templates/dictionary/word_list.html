@@ -2,10 +2,15 @@
 {% load dictionary_tags %}
 {% load static %}
 {% block content %}
-<div class="content container">
+<div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h2>Palabras</h2>
+        <div class="col">
+            <h1>Palabras</h1>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <form method="get" action="">{{ form.filter }}</form>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -33,7 +38,12 @@
         </table>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
+            <p>Mostrando {{ page_obj.start_index }}-{{ page_obj.end_index }} de {{ page_obj.paginator.count }} palabras.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <nav aria-label="Navegación">
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
@@ -78,7 +88,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col">
             <a class="btn btn-primary" href="{% url 'dictionary:word_create' %}" role="button">Nueva palabra</a>
         </div>
     </div>

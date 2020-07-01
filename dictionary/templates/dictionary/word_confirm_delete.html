@@ -1,11 +1,13 @@
 {% extends 'dictionary/base.html' %}
 {% block content %}
-<div class="content container">
+<div class="container">
     <div class="row">
-        <form method="post">{% csrf_token %}
-            <p>¿Estás seguro de querer eliminar la palabra <strong>{{ object }}</strong> y todas sus acepciones?</p>
-            <input type="submit" value="Confirmar">
-        </form>
+        <div class="col">
+            <form method="post">{% csrf_token %}
+                <p>¿Estás seguro de querer eliminar la palabra <strong>{{ object }}</strong> y todas sus acepciones?</p>
+                <input type="submit" value="Confirmar">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}

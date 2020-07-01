@@ -4,13 +4,33 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from dictionary.forms import AcceptationFormSet, WordForm
+from dictionary.forms import AcceptationFormSet, WordForm, FilterForm
 from dictionary.models import Word
 
 
 class WordListView(generic.ListView):
     model = Word
     paginate_by = settings.PAG_WORD
+
+    def get_queryset(self):
+        filter = self.request.GET.get('filter', "")
+        if filter == "":
+            words = super(WordListView, self).get_queryset()
+        else:
+            words = Word.objects.filter(term__icontains=filter).order_by('term')
+
+        return words
+
+    def get_context_data(self, **kwargs):
+        context = super(WordListView, self).get_context_data(**kwargs)
+
+        filter = self.request.GET.get('filter')
+        if filter == "":
+            context['form'] = FilterForm()
+        else:
+            context['form'] = FilterForm(initial={'filter': filter})
+
+        return context
 
 
 class WordCreateView(generic.CreateView):
