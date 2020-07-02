@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import transaction
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 

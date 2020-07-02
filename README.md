@@ -37,6 +37,7 @@ The following Python modules are used:
     $ sudo -u postgres psql
     postgres=# CREATE DATABASE testapp;
     postgres=# CREATE USER testuser WITH ENCRYPTED PASSWORD 'testpwd';
+    postgres=# ALTER USER testuser CREATEDB;
     postgres=# ALTER ROLE testuser SET client_encoding TO 'utf8';
     postgres=# ALTER ROLE testuser SET default_transaction_isolation TO 'read committed';
     postgres=# ALTER ROLE testuser SET timezone TO 'UTC';

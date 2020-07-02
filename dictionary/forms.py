@@ -4,7 +4,7 @@ from django.forms.models import inlineformset_factory
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, Div, HTML, ButtonHolder, Submit
 from .layouts import *
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class AcceptationForm(forms.ModelForm):
