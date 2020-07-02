@@ -16,6 +16,8 @@ The following Python modules are used:
 * psycopg2 (2.8.5): PostgreSQL connector.
 * django-crispy-forms (1.9.1): To manage formsets.
 * django-cookie-law (2.0.3): Cookie alert.
+* pytest-django (3.9.0): Testing framework.
+* pytest-cov (2.10.0): Coverage stats.
 
 ## Install/deploy
 
