@@ -58,6 +58,13 @@ The following Python modules are used:
     ```
     (test_app) $ python manage.py shell < fill_db.py
     ```
+   
+    or
+   
+    ```
+    (test_app) $ python manage.py loaddata group.json
+    (test_app) $ python manage.py loaddata acceptation.json
+    ```
 
 5. Run development server:
 
