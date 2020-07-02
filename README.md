@@ -62,8 +62,7 @@ The following Python modules are used:
     or
    
     ```
-    (test_app) $ python manage.py loaddata group.json
-    (test_app) $ python manage.py loaddata acceptation.json
+    (test_app) $ python manage.py loaddata mock_data.json
     ```
 
 5. Run development server:
