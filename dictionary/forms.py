@@ -31,7 +31,7 @@ class WordForm(forms.ModelForm):
         exclude = []
 
     def __init__(self, *args, **kwargs):
-        super(WordForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_show_labels = False

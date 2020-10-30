@@ -14,14 +14,14 @@ class WordListView(generic.ListView):
     def get_queryset(self):
         filter = self.request.GET.get('filter', "")
         if filter == "":
-            words = super(WordListView, self).get_queryset()
+            words = super().get_queryset()
         else:
             words = Word.objects.filter(term__icontains=filter).order_by('term')
 
         return words
 
     def get_context_data(self, **kwargs):
-        context = super(WordListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
         filter = self.request.GET.get('filter')
         if filter == "":
@@ -38,7 +38,7 @@ class WordCreateView(generic.CreateView):
     form_class = WordForm
 
     def get_context_data(self, **kwargs):
-        data = super(WordCreateView, self).get_context_data(**kwargs)
+        data = super().get_context_data(**kwargs)
         if self.request.POST:
             data['acceptations'] = AcceptationFormSet(self.request.POST)
         else:
@@ -53,7 +53,7 @@ class WordCreateView(generic.CreateView):
             if acceptations.is_valid():
                 acceptations.instance = self.object
                 acceptations.save()
-        return super(WordCreateView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class WordUpdateView(generic.UpdateView):
@@ -62,7 +62,7 @@ class WordUpdateView(generic.UpdateView):
     form_class = WordForm
 
     def get_context_data(self, **kwargs):
-        data = super(WordUpdateView, self).get_context_data(**kwargs)
+        data = super().get_context_data(**kwargs)
         if self.request.POST:
             data['acceptations'] = AcceptationFormSet(self.request.POST, instance=self.object)
         else:
@@ -77,7 +77,7 @@ class WordUpdateView(generic.UpdateView):
             if acceptations.is_valid():
                 acceptations.instance = self.object
                 acceptations.save()
-        return super(WordUpdateView, self).form_valid(form)
+        return super().form_valid(form)
 
 
 class WordDeleteView(generic.base.RedirectView):
@@ -87,4 +87,4 @@ class WordDeleteView(generic.base.RedirectView):
             word.delete()
 
         self.url = reverse_lazy('dictionary:word_list')
-        return super(WordDeleteView, self).get_redirect_url(*args, **kwargs)
+        return super().get_redirect_url(*args, **kwargs)
